@@ -1,0 +1,59 @@
+Source: backintime
+Section: utils
+Priority: extra
+Maintainer: Jonathan Wiltshire <jmw@debian.org>
+Build-Depends: debhelper (>= 9), python3
+Standards-Version: 3.9.6
+Homepage: https://launchpad.net/backintime
+Vcs-Browser: https://github.com/robinro/backintime
+Vcs-Git: https://github.com/robinro/backintime.git
+X-Python3-Version: >= 3.3
+
+Package: backintime-common
+Architecture: all
+Depends: rsync, cron, python3-keyring, python3-dbus, ${python3:Depends}, ${misc:Depends}
+Recommends: backintime-qt4, openssh-client
+Suggests: sshfs, encfs, powermgmt-base
+Description: simple backup/snapshot system (common files)
+ Back In Time is a framework for rsync, diff and cron for the purpose of
+ taking snapshots and backups of specified folders. It minimizes disk space use
+ by taking a snapshot only if the directory has been changed, and hard links
+ for unmodified files if it has. The user can schedule regular backups using 
+ cron.
+ .
+ This is the common framework for Back In Time. For a graphical interface,
+ install backintime-qt4.
+ .
+ To back up to SSH or encrypted filesystems, install the additional sshfs
+ or encfs packages.
+
+Package: backintime-qt4
+Architecture: all
+Depends: x11-utils, libnotify-bin, python3-pyqt4, python3-dbus.mainloop.qt, policykit-1,
+ backintime-common (= ${source:Version}), ${python3:Depends}, ${misc:Depends}
+Recommends: python3-secretstorage
+Suggests: meld | kompare
+Breaks: backintime-kde (<< 1.1.6), backintime-gnome (<< 1.1.6)
+Replaces: backintime-kde (<< 1.1.6), backintime-gnome (<< 1.1.6)
+Description: simple backup/snapshot system (graphical interface)
+ Back In Time is a framework for rsync, diff and cron for the purpose of
+ taking snapshots and backups of specified folders. It minimizes disk space use
+ by taking a snapshot only if the directory has been changed, and hard links
+ for unmodified files if it has. The user can schedule regular backups using
+ cron.
+ .
+ This is the graphical interface for Back In Time.
+
+Package: backintime-kde
+Section: oldlibs
+Architecture: all
+Depends: backintime-qt4, ${misc:Depends}
+Description: KDE front-end for backintime (transitional package)
+ This is a transitional package and can safely be removed.
+
+Package: backintime-gnome
+Section: oldlibs
+Architecture: all
+Depends: backintime-qt4, ${misc:Depends}
+Description: GNOME front-end for backintime (transitional package)
+ This is a transitional package and can safely be removed.

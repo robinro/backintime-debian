@@ -1,0 +1,4 @@
+backintime-common_1.1.8-1_all.deb utils extra
+backintime-gnome_1.1.8-1_all.deb oldlibs extra
+backintime-kde_1.1.8-1_all.deb oldlibs extra
+backintime-qt4_1.1.8-1_all.deb utils extra
